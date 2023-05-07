@@ -1,3 +1,7 @@
+using HTT_Test_API.Repository;
+using HTT_Test_API.Repository.Interfaces;
+using HTT_Test_API.Servises;
+using HTT_Test_API.Servises.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace HTT_Test_API
@@ -11,6 +15,9 @@ namespace HTT_Test_API
             // Add services to the container.
             builder.Services.AddDbContext<AppContext>(options =>
                 options.UseSqlServer(builder.Configuration["ConnectionStrings:SqlServerConnection"]));
+
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped<IProductServise, ProductServise>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HTT_Test_API.Migrations
 {
     [DbContext(typeof(AppContext))]
-    [Migration("20230506111601_init")]
+    [Migration("20230507132131_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -39,24 +39,49 @@ namespace HTT_Test_API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Фрукты"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Овощи"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Мясо"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Алкоголь"
+                        });
                 });
 
             modelBuilder.Entity("HTT_Test_API.Models.Product", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
+
+                    b.Property<int>("CategiryId")
+                        .HasColumnType("int");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("ProductName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ProductId");
 
                     b.HasIndex("CategoryId");
 
