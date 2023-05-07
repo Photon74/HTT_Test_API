@@ -1,0 +1,47 @@
+﻿@inject IHttpClientFactory Client
+
+
+<button @onclick="GetData">Получить данные</button>
+
+@if (products == null)
+{
+    <p>Загрузка...</p>
+}
+else
+{
+    <table class="table table-bordered border-primary">
+        <tr>
+            <th>Продукт</th>
+            <th>Категория</th>
+        </tr>
+
+        @foreach (var product in products)
+        {
+            <tr>
+                <td>@product.ProductName</td>
+                <td>@product.CategoryName</td>
+            </tr>
+        }
+    </table>
+}
+
+@code {
+    List<Product> products = new();
+
+    async Task GetData()
+    {
+        var httpClient = Client.CreateClient();
+        var response = await httpClient.GetAsync("https://localhost:7263/api/product");
+        if (response.IsSuccessStatusCode)
+        {
+            products = await response.Content.ReadFromJsonAsync<List<Product>>();
+        }
+    }
+
+    class Product
+    {
+        public string ProductName { get; set; } = null!;
+        public string CategoryName { get; set; } = null!;
+    }
+}
+
