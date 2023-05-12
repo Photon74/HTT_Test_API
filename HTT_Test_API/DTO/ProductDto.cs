@@ -3,6 +3,6 @@
     public class ProductDto
     {
         public string ProductName { get; set; } = null!;
-        public string CategoryName { get; set; } = null!;
+        public string? CategoryName { get; set; }
     }
 }

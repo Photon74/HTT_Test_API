@@ -7,7 +7,7 @@
 namespace HTT_Test_API.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class _10 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -32,8 +32,7 @@ namespace HTT_Test_API.Migrations
                     ProductId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CategiryId = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                    CategoryId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -42,8 +41,7 @@ namespace HTT_Test_API.Migrations
                         name: "FK_Products_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
@@ -54,7 +52,28 @@ namespace HTT_Test_API.Migrations
                     { 1, "Фрукты" },
                     { 2, "Овощи" },
                     { 3, "Мясо" },
-                    { 4, "Алкоголь" }
+                    { 4, "Алкоголь" },
+                    { 5, "Мебель" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "ProductId", "CategoryId", "ProductName" },
+                values: new object[,]
+                {
+                    { 13, null, "123123" },
+                    { 1, 1, "Клубника" },
+                    { 2, 1, "Вишня" },
+                    { 3, 1, "Крыжовник" },
+                    { 4, 2, "Помидоры" },
+                    { 5, 2, "Огурцы" },
+                    { 6, 2, "Лук" },
+                    { 7, 3, "Свинина" },
+                    { 8, 3, "Говядина" },
+                    { 9, 3, "Курица" },
+                    { 10, 4, "Пиво" },
+                    { 11, 4, "Водка" },
+                    { 12, 4, "Коньяк" }
                 });
 
             migrationBuilder.CreateIndex(

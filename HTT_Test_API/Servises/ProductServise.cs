@@ -23,7 +23,7 @@ public class ProductServise : IProductServise
             productsDto.Add(new ProductDto
             {
                 ProductName = product.ProductName,
-                CategoryName = product.Category.Name,
+                CategoryName = product.Category?.Name ?? "Без категории",
             });
         }
 

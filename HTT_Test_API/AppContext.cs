@@ -18,7 +18,8 @@ namespace HTT_Test_API
                     new Category{Id=1, Name="Фрукты"},
                     new Category{Id=2, Name="Овощи"},
                     new Category{Id=3, Name="Мясо"},
-                    new Category{Id=4, Name="Алкоголь"}
+                    new Category{Id=4, Name="Алкоголь"},
+                    new Category{Id=5, Name="Мебель"}
                 });
 
 
@@ -37,6 +38,7 @@ namespace HTT_Test_API
                     new Product{ProductId=10, ProductName="Пиво", CategoryId=4 },
                     new Product{ProductId=11, ProductName="Водка", CategoryId=4 },
                     new Product{ProductId=12, ProductName="Коньяк", CategoryId=4 },
+                    new Product{ProductId=13, ProductName="123123" },
                 }
             );
             base.OnModelCreating(modelBuilder);
